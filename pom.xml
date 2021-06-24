@@ -36,6 +36,8 @@
     <module>java-se-swing-webbrowser</module>
     <module>java-se-yaml-snakeyaml</module>
     <module>java-se-dom4j</module>
+    <module>java-se-easy-excel-study</module>
+    <module>java-se-javacv-study</module>
   </modules>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
