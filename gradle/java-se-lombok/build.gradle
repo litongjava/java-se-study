@@ -1,0 +1,23 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+repositories {
+	mavenLocal()
+	maven{
+		url "http://111.202.106.148:1031/nexus/content/groups/public"
+	}
+}
+
+String slf4jVersion='1.7.25'
+String lombokVersin='1.16.16'
+dependencies {
+	compile "org.slf4j:slf4j-log4j12:$slf4jVersion"
+	compile "org.projectlombok:lombok:1.16.16"
+    testCompile 'junit:junit:4.12'
+}
+
+task createJavaProject << {
+	sourceSets*.java.srcDirs*.each{it.mkdirs()}
+	sourceSets*.resources.srcDirs*.each{it.mkdirs()}
+}

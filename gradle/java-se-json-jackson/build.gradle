@@ -1,0 +1,22 @@
+//project:se-json-jackson
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+repositories {
+	mavenLocal()
+	maven {
+		url 'http://111.202.106.148:1031/neuxs/conetent/groups/public'
+	}
+}
+
+dependencies {
+	compile 'org.projectlombok:lombok:1.16.10'
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.5.3'
+	testCompile 'junit:junit:4.12'
+}
+
+task createJavaProject << {
+	sourceSets*.java.srcDirs*.each{it.mkdirs()}
+	sourceSets*.resources.srcDirs*.each{it.mkdirs()}
+}
