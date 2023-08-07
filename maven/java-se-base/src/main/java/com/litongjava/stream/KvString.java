@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class KvObject<T> {
+public class KvString {
   private String k;
-  private T v;
+  private String v;
 
 }

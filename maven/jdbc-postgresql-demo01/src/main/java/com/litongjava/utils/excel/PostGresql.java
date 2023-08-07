@@ -1,4 +1,4 @@
-package com.litongjava.stream;
+package com.litongjava.utils.excel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class KvObject<T> {
-  private String k;
-  private T v;
-
+public class PostGresql {
+  private String id, user, pswd, host, port, dbname;
 }
