@@ -67,6 +67,15 @@ public class UtilitiesLiTong {
 		String s = scan.nextLine();
 		scan.close();
 		return s;
-
+	}
+	/**
+	 * scan next line.
+	 * @return int
+	 */
+	public static int readUserInt() {
+	  Scanner scan = new Scanner(System.in);
+    String s = scan.nextLine();
+    scan.close();
+    return Integer.parseInt(s);
 	}
 }

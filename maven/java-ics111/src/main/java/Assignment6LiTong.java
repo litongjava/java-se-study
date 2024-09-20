@@ -35,10 +35,10 @@ public class Assignment6LiTong {
 
 		input = scanner.nextLine();
 		int peoples = Integer.parseInt(input);
-		int peer = total / peoples;
+		double peer = (double) total / (double) peoples;
 
 		message = String.format("There are %d people to share the cookies \n" 
-          + "Each person will get %d cookies",
+          + "Each person will get %1.1f cookies",
 				peoples, peer);
 		System.out.println(message);
 
