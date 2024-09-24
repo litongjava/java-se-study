@@ -65,7 +65,6 @@ public class UtilitiesLiTong {
 	public static String readUserString() {
 		Scanner scan = new Scanner(System.in);
 		String s = scan.nextLine();
-		scan.close();
 		return s;
 	}
 	/**
@@ -73,9 +72,26 @@ public class UtilitiesLiTong {
 	 * @return int
 	 */
 	public static int readUserInt() {
-	  Scanner scan = new Scanner(System.in);
-    String s = scan.nextLine();
-    scan.close();
-    return Integer.parseInt(s);
+	   Scanner scan = new Scanner(System.in);
+      String s = scan.nextLine();
+      return Integer.parseInt(s);
+	}
+	
+	/**
+	 * print length and average of input strings.
+	 * @param s1 s1
+	 * @param s2 s2
+	 * @param s3 s3
+	 */
+	public static void averageStrings(String s1, String s2, String s3) {
+		int s1Length = s1.trim().length();
+		int s2Length = s2.trim().length();
+		int s3Length = s3.trim().length();
+		System.out.printf("%s is %d characters long\n", s1, s1Length);
+		System.out.printf("%s is %d characters long\n", s2, s2Length);
+		System.out.printf("%s is %d characters long\n", s3, s3Length);
+		
+		double average = ((double) s1Length + (double) s2Length + (double) s3Length) / 3;
+		System.out.printf("The average length of your Strings is: %f characters.\n", average);
 	}
 }
