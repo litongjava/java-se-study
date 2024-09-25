@@ -1,14 +1,13 @@
-package com.litongjava.aio;
+package com.litongjava.aio.boot.context;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.AsynchronousServerSocketChannel;
 
+import com.litongjava.aio.boot.handler.AcceptCompletionHandler;
+
 public class AioHttpServerJava8 {
-
-  public static void main(String[] args) {
-
-    ServerConfig.me().setByteBufferHandler(new DefaultByteBufferHandler());
+  public static void run() {
     try {
       // 创建异步服务器通道并绑定到端口8080
       AsynchronousServerSocketChannel serverChannel = AsynchronousServerSocketChannel.open();
