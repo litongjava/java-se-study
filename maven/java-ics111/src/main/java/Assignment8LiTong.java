@@ -24,6 +24,8 @@ public class Assignment8LiTong {
 	   System.out.println();
 	   UtilitiesLiTong.averageStrings(firstStr, secondStr, thirdStr);
 	   System.out.println();
+	   UtilitiesLiTong.replaceChars(firstStr, secondStr, thirdStr);
+	   System.out.println();
 	   System.out.println("Good bye!");
 	    
 	    //scan.close();
