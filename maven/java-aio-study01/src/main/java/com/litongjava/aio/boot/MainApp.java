@@ -7,7 +7,7 @@ import com.litongjava.aio.boot.context.AioHttpServerJava8;
 import com.litongjava.aio.boot.http.HttpRequestHandler;
 import com.litongjava.aio.boot.http.HttpRequestRouter;
 import com.litongjava.aio.boot.utils.RequestUtils;
-import com.litongjava.aio.boot.utils.RespnseUtils;
+import com.litongjava.aio.boot.utils.ResponseUtils;
 
 public class MainApp {
 
@@ -17,13 +17,12 @@ public class MainApp {
 
       @Override
       public String handle(String request) throws Exception {
-        // 解析请求，获取IP参数
         Map<String, String> requestMap = RequestUtils.getRequestMap(request);
         String body = requestMap.get("ip");
         if (body == null) {
           body = "ok";
         }
-        String response = RespnseUtils.toResponse(200, "text/plain;charset=utf-8", body);
+        String response = ResponseUtils.toResponse(200, "text/plain;charset=utf-8", body);
         return response;
       }
     });

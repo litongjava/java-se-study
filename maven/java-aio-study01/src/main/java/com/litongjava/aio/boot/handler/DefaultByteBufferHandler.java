@@ -8,7 +8,7 @@ import com.litongjava.aio.boot.config.ServerConfig;
 import com.litongjava.aio.boot.http.HttpRequestHandler;
 import com.litongjava.aio.boot.http.HttpRequestRouter;
 import com.litongjava.aio.boot.utils.RequestUtils;
-import com.litongjava.aio.boot.utils.RespnseUtils;
+import com.litongjava.aio.boot.utils.ResponseUtils;
 
 public class DefaultByteBufferHandler implements ByteBufferHandler {
 
@@ -27,11 +27,11 @@ public class DefaultByteBufferHandler implements ByteBufferHandler {
       try {
         response = handler.handle(request);
       } catch (Exception e) {
-        response = RespnseUtils.toResponse(500, "text/plain", e.getMessage());
+        response = ResponseUtils.toResponse(500, "text/plain", e.getMessage());
         e.printStackTrace();
       }
       if (request == null) {
-        response = RespnseUtils.toResponse(404, "text/plain", "Null");
+        response = ResponseUtils.toResponse(404, "text/plain", "Null");
         writeHttpResponse(clientChannel, response);
       } else {
         writeHttpResponse(clientChannel, response);
@@ -39,7 +39,7 @@ public class DefaultByteBufferHandler implements ByteBufferHandler {
 
     }else {
       // 其他路径,返回404
-      String response = RespnseUtils.toResponse(404, "text/plain", "404 Not Found");
+      String response = ResponseUtils.toResponse(404, "text/plain", "404 Not Found");
       writeHttpResponse(clientChannel, response);
     }
 

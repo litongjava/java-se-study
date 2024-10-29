@@ -2,7 +2,7 @@ package com.litongjava.aio.boot.utils;
 
 import java.nio.charset.StandardCharsets;
 
-public class RespnseUtils {
+public class ResponseUtils {
 
   public static String toResponse(int statusCode, String contentType, String body) {
     String statusMessage;
