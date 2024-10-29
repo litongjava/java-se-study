@@ -5,83 +5,102 @@ import java.util.Scanner;
 /**
  * Assignment 15 Menu.
  * 
+ * This program generates a list of random phone numbers based on user input.
+ * It allows users to set the number of phone numbers to generate, print the list,
+ * or exit the program.
+ * 
  * @author Tong Li
  * @since 24/10
  *
  */
 public class Assignment15LiTongMenu {
-	/**
-	 * main.
-	 * 
-	 * @param args input
-	 */
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		boolean keepGoing = true;
-		while (keepGoing) {
-			System.out.println("Enter how many phone numbers do you want or enter 0 to quit:");
-			String temp = scanner.nextLine();
-			boolean flag = true;
-			int limit = 0;
-			try {
-				limit = Integer.parseInt(temp);
-			} catch (NumberFormatException e) {
-				flag = false;
-			}
 
-			if (flag) {
-				if (limit == 0) {
-					keepGoing = false;
-					System.out.println("You have chosen to quit. Goodbye!");
-				} else {
-					System.out.println("Here is your list of phone numbers:");
+  /**
+   * Main method to run the program.
+   * 
+   * @param args command-line arguments
+   */
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    boolean keepGoing = true;
+    int limit = 100;
 
-					for (int i = 0; i < limit; i++) {
-						System.out.println(i + "\t" + generateNumber());
-					}
-					System.out.println("Happy Calling!");
-				}
+    while (keepGoing) {
+      System.out.println("Please enter the number of your choice:");
+      System.out.println("1 to change the amount of phone numbers to generate (defaults to 100)");
+      System.out.println("2 to print a list of phone numbers");
+      System.out.println("0 to exit");
+      System.out.println("======================================");
 
-			} else {
-				System.out.println("I cannot print your list of phone numbers.");
-				System.out.println("You did not give me an integer number.");
-			}
+      String temp = scanner.nextLine();
+      switch (temp) {
+      case "0": {
+        System.out.println("You have chosen to exit");
+        keepGoing = false;
+        break;
+      }
+      case "1": {
+        System.out.println("Please enter the amount of phone numbers you want:");
+        temp = scanner.nextLine();
+        boolean flag = true;
+        try {
+          limit = Integer.parseInt(temp);
+        } catch (NumberFormatException e) {
+          flag = false;
+        }
 
-		}
+        if (flag) {
+          System.out.println("The amount of numbers to generate has been changed to " + limit);
+        } else {
+          System.out.println("You did not give me an integer number.");
+          System.out.println("The amount of numbers will stay at: " + limit);
+          System.out.println();
+          System.out.println("======================================");
+        }
+        break;
+      }
+      case "2": {
+        System.out.println("Here is your list of phone numbers:");
+        for (int i = 0; i < limit; i++) {
+          System.out.println((i + 1) + "\t" + generateNumber());
+        }
+        System.out.println("Happy Calling!");
+        break;
+      }
+      default:
+        System.out.println("You didn't enter a valid choice");
+        System.out.println("Please try again");
+        System.out.println("======================================");
+      }
+    }
 
-	}
+    System.out.println("Aloha!");
+    scanner.close();
+  }
 
-	/**
-	 * generate a phone number with 10 digits.
-	 * 
-	 * @return formatted phone number as a String
-	 */
-	public static String generateNumber() {
-		Random random = new Random();
+  /**
+   * Generates a random phone number with a 3-digit area code, 3-digit central office code,
+   * and a 4-digit line number.
+   * 
+   * @return formatted phone number as a String
+   */
+  public static String generateNumber() {
+    Random random = new Random();
 
-		// The first 3 digits are the area code and can not begin with 0, 8 or 9
-		int areaCode = random.nextInt(100, 800);
+    int areaCode = random.nextInt(100, 800);
 
-		// The second 3 digits can not be greater than 750 and not less than 100.
-		// 750 - 100 + 1 = 651
-		// java 1.8
-		// int middleDigits = random.nextInt(651) + 100;
-		int middleDigits = random.nextInt(100, 750 + 1);
+    int middleDigits = random.nextInt(100, 750 + 1);
 
-		// The last 4 digits can be any digits
-		// You must allow numbers from 0000 up to 9999
-		int lastDigits = random.nextInt(10000);
+    int lastDigits = random.nextInt(10000);
 
-		// Format the phone number
-		DecimalFormat fourDigitFormat = new DecimalFormat("0000");
-		DecimalFormat threeDigitFormat = new DecimalFormat("000");
+    DecimalFormat fourDigitFormat = new DecimalFormat("0000");
+    DecimalFormat threeDigitFormat = new DecimalFormat("000");
 
-		String first = threeDigitFormat.format(areaCode);
-		String second = threeDigitFormat.format(middleDigits);
-		String third = fourDigitFormat.format(lastDigits);
-		String phoneNumber = "(" + first + ") " + second + "-" + third;
+    String first = threeDigitFormat.format(areaCode);
+    String second = threeDigitFormat.format(middleDigits);
+    String third = fourDigitFormat.format(lastDigits);
+    String phoneNumber = "(" + first + ") " + second + "-" + third;
 
-		// returning generated phone number
-		return phoneNumber;
-	}
+    return phoneNumber;
+  }
 }
