@@ -33,6 +33,7 @@ public class Assignment11Litong {
 	 * @param letter grade
 	 * @return str
 	 */
+	/*
 	public static String gradeCriteria(String letter) {
 		return switch (letter.toUpperCase()) {
 			case "A" -> "90 - 100%";
@@ -43,7 +44,7 @@ public class Assignment11Litong {
 			default -> "ERROR";
 		};
 	}
-	/*
+	*/
 	public static String gradeCriteria(String letter) {
 		switch (letter.toUpperCase()) {
 		   case "A":
@@ -60,5 +61,4 @@ public class Assignment11Litong {
 			   return "ERROR";
 		}
 	}
-	*/
 }

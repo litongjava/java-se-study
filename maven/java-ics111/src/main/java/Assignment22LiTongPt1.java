@@ -23,14 +23,9 @@ public class Assignment22LiTongPt1 {
 
 		Scanner scan = new Scanner(System.in);
 
-		int counter = 0;
-		System.out.println("Do you want to add a Pokemon to your team? y/n:");
-		String yOrN = scan.nextLine();
-		while (yOrN.equalsIgnoreCase("y") && counter < SIZE) {
-
-		}
 		for (int i = 0; i < SIZE; i++) {
-
+			System.out.println("Do you want to add a Pokemon to your team? y/n:");
+			String yOrN = scan.nextLine();
 			if ("n".equalsIgnoreCase(yOrN)) {
 				if (i == 0) {
 					System.out.print("You don't have any Pokemons in your team.");

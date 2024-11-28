@@ -25,6 +25,13 @@ public class ValidatedPokemonLITPt2 {
 
 	/**
 	 * constructor.
+	 */
+	public ValidatedPokemonLITPt2() {
+	  
+	}
+	
+	/**
+	 * constructor.
 	 * 
 	 * @param species species
 	 * @param name    name
