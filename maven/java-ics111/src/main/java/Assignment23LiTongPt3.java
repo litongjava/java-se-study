@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -6,30 +8,24 @@ import java.util.Scanner;
  * @author Tong Li
  *
  */
-public class Assignment22LiTongPt2 {
-
-	/**
-	 * size.
-	 */
-	static final int SIZE = 6;
-
+public class Assignment23LiTongPt3 {
 	/**
 	 * main.
 	 * 
 	 * @param args not used.
 	 */
 	public static void main(String[] args) {
-		ValidatedPokemonLITPt2[] team = new ValidatedPokemonLITPt2[SIZE];
+		List<ValidatedPokemonLITPt2> team = new ArrayList<>();
 
 		Scanner scan = new Scanner(System.in);
-		int counter = 0;
+//		int counter = 0;
 
 		System.out.println("Do you want to add a Pokemon to your team? y/n:");
 		String yOrN = scan.nextLine();
-		while (counter < SIZE && "y".equalsIgnoreCase(yOrN)) {
+		while ("y".equalsIgnoreCase(yOrN)) {
 			ValidatedPokemonLITPt2 validatedPokemonLITPt2 = new ValidatedPokemonLITPt2();
 
-			System.out.print("Enter Pokemon's species:");
+			System.out.print("What is the Pokemon's species?");
 			String species = scan.nextLine();
 
 			try {
@@ -39,13 +35,13 @@ public class Assignment22LiTongPt2 {
 				System.out.println("Try again");
 			}
 
-			System.out.println("Enter Pokemon's name:");
+			System.out.println("What is the Pokemon's name?");
 			String name = scan.nextLine();
 			validatedPokemonLITPt2.setName(name);
 
 			boolean hasException = true;
 			while (hasException) {
-				System.out.println("Enter Pokemon's number:");
+				System.out.println("What is the Pokemon's number?");
 				int number = 0;
 				try {
 					number = Integer.parseInt(scan.nextLine());
@@ -62,7 +58,6 @@ public class Assignment22LiTongPt2 {
 					hasException = true;
 				}
 			}
-
 			hasException = true;
 			while (hasException) {
 				System.out.println("Enter Pokemon's HP:");
@@ -83,24 +78,24 @@ public class Assignment22LiTongPt2 {
 				}
 			}
 
+			team.add(validatedPokemonLITPt2);
 			System.out.println("This Pokemon was added to your team:");
-			System.out.println(team[counter].toString());
+			System.out.println(team.toString());
 			System.out.println();
-			counter++;
 			System.out.println("Do you want to add a Pokemon to your team? y/n:");
 			yOrN = scan.nextLine();
 		}
 
-		if (counter == 0) {
+		if (team.size() == 0) {
 			System.out.print("You don't have any Pokemons in your team.");
 			return;
 		}
 
-		for (int i = 0; i < counter; i++) {
-			String msg = "*********** Here is your team of " + (counter + 1)
-					+ " Pokemons! ************";
-			System.out.println(msg);
-			System.out.println("Pokemon " + (i + 1) + " " + team[i]);
+		int i = 0;
+		String msg = "*********** Here is your team of " + team.size() + " Pokemons! ************";
+		System.out.println(msg);
+		for (ValidatedPokemonLITPt2 p : team) {
+			System.out.println("Pokemon " + (++i) + " " + p);
 		}
 	}
 
