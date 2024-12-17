@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -16,33 +17,32 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-/**
- * main panel.
- * @author Tong Li
- *
- */
-public class PokeLIPanelPt3 extends JPanel {
+public class PokemonGUI {
 
-  private static final String[] POKEMON_SPECIES = { "Bulbasaur", "Venusaur", "Ivysaur", "Charmander", "Charmeleon", "Charizard", "Squirtle", "Wartortle", "Blastoise" };
+  private static final String[] POKEMON_SPECIES = { "Bulbasaur", "Venusaur", "Ivysaur",
+      //
+      "Charmander", "Charmeleon", "Charizard", "Squirtle", "Wartortle", "Blastoise" };
   private static final int[] POKEMON_NUMBERS = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
   private static final int HP_MIN = 1;
-  private static final int HP_MAX = 141;
+  private static final int HP_MAX = 152;
+  private static ArrayList<ValidatedPokemonLITPt2> pokemonList = new ArrayList<>();
 
-  private ArrayList<ValidatedPokemonLITPt2> pokemonList = new ArrayList<>();
+  public static void main(String[] args) {
+    JFrame frame = new JFrame("PokemonGUI");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setSize(800, 600);
+    JPanel mainPanel = initMainPanel();
+    frame.add(mainPanel);
+    frame.setVisible(true);
+  }
 
-  /**
-   * Constructor holds everything.
-   */
-  public PokeLIPanelPt3() {
+  private static JPanel initMainPanel() {
+    JPanel mainPanel = new JPanel(new BorderLayout());
+    mainPanel.setBackground(Color.LIGHT_GRAY);
 
-    this.setBackground(Color.LIGHT_GRAY);
-
-    // Upper part - Create Pokemon
     JPanel upperPanel = new JPanel(new BorderLayout());
-
-    JPanel inputPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+    JPanel inputPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
     inputPanel.setBackground(Color.gray);
-
     JLabel labelChoice = new JLabel("Pokemon Available:");
     Choice choosierDrop = new Choice();
     for (String species : POKEMON_SPECIES) {
@@ -72,7 +72,7 @@ public class PokeLIPanelPt3 extends JPanel {
     upperPanel.add(inputPanel, BorderLayout.NORTH);
     upperPanel.add(newPokemonPanel, BorderLayout.CENTER);
 
-    this.add(upperPanel, BorderLayout.NORTH);
+    mainPanel.add(upperPanel, BorderLayout.NORTH);
 
     // Lower part - List Pokemon
     JPanel lowerPanel = new JPanel(new BorderLayout());
@@ -83,7 +83,7 @@ public class PokeLIPanelPt3 extends JPanel {
     lowerPanel.add(listPokemonButton, BorderLayout.NORTH);
     lowerPanel.add(new JScrollPane(listPokemonArea), BorderLayout.CENTER);
 
-    this.add(lowerPanel, BorderLayout.CENTER);
+    mainPanel.add(lowerPanel, BorderLayout.CENTER);
 
     // Action Listeners
     makePokemonButton.addActionListener(new ActionListener() {
@@ -92,7 +92,7 @@ public class PokeLIPanelPt3 extends JPanel {
         String selectedSpecies = choosierDrop.getSelectedItem();
         String name = nameField.getText().trim();
         if (name.isEmpty()) {
-          JOptionPane.showMessageDialog(upperPanel.getParent(), "Please enter a name for the Pokemon.", "Error", JOptionPane.ERROR_MESSAGE);
+          JOptionPane.showMessageDialog(mainPanel.getParent(), "Please enter a name for the Pokemon.", "Error", JOptionPane.ERROR_MESSAGE);
           return;
         }
 
@@ -116,6 +116,6 @@ public class PokeLIPanelPt3 extends JPanel {
         listPokemonArea.setText(list.toString());
       }
     });
+    return mainPanel;
   }
-
 }
